@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace SimpleCalculator.Operations
 {
-    class SubtractOperation : IOperation
+    public class SubtractOperation : IOperation
     {
         public double Execute(double argument1, double argument2)
         {
-            throw new NotImplementedException();
+            return argument1 - argument2;
         }
     }
 }

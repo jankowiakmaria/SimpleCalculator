@@ -13,7 +13,8 @@ namespace SimpleCalculator
 
         readonly Dictionary<string, IOperation> Operations = new Dictionary<string, IOperation>()
         {
-            {"+", new AddOperation()}
+            {"+", new AddOperation()},
+            {"-", new SubtractOperation()}
         };
 
         public double Calculate(string operation, double argument)

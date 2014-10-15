@@ -9,16 +9,13 @@ using SimpleCalculator.Operations;
 namespace SimpleCalculatorTests.Operations
 {
     [TestFixture]
-    class SubtractOpeartionTests
+    class SubtractOperationTests
     {
         [Test]
         public void ExecuteTest()
         {
             var subtractOperation = new SubtractOperation();
 
-            Assert.AreEqual(-1, subtractOperation.Execute(0, 1));
-            Assert.AreEqual(0, subtractOperation.Execute(1, 1));
-            Assert.AreEqual(1, subtractOperation.Execute(2, 1));
         }
     }
 }
