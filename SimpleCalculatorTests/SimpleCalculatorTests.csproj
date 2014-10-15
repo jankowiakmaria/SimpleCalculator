@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="CalculatorTests.cs" />
     <Compile Include="Operations\AddOperationTests.cs" />
+    <Compile Include="Operations\ChangeSignOperationTests.cs" />
     <Compile Include="Operations\ClearOperationTests.cs" />
     <Compile Include="Operations\DivideOperationTests.cs" />
     <Compile Include="Operations\MultiplyOperationTests.cs" />

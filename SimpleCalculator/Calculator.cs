@@ -14,7 +14,8 @@
             {"-", new SubtractOperation()},
             {"C", new ClearOperation()},
             {"*", new MultiplyOperation()},
-            {"/", new DivideOperation()}
+            {"/", new DivideOperation()},
+            {"+/-", new ChangeSignOperation()}
         };
 
         public Calculator(double value = 0.0)

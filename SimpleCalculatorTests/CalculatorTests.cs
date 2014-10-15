@@ -100,5 +100,29 @@
 
             Assert.Catch(() => calculator.Calculate("/", 0));
         }
+
+        [Test]
+        public void ChangeSignWhenZeroTest()
+        {
+            var calculator = new Calculator();
+
+            Assert.AreEqual(0, calculator.Calculate("+/-", 10));
+        }
+
+        [Test]
+        public void ChangeSignWhenPositiveTest()
+        {
+            var calculator = new Calculator(1.5);
+
+            Assert.AreEqual(-1.5, calculator.Calculate("+/-", 10));
+        }
+
+        [Test]
+        public void ChangeSignWhenNegativeTest()
+        {
+            var calculator = new Calculator(-1.5);
+
+            Assert.AreEqual(1.5, calculator.Calculate("+/-", 10));
+        }
     }
 }
