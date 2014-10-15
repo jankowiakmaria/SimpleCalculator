@@ -15,7 +15,8 @@
             {"C", new ClearOperation()},
             {"*", new MultiplyOperation()},
             {"/", new DivideOperation()},
-            {"+/-", new ChangeSignOperation()}
+            {"+/-", new ChangeSignOperation()},
+            {"sqrt", new SqrtOperation()}
         };
 
         public Calculator(double value = 0.0)
@@ -33,7 +34,7 @@
             }
             else
             {
-                throw new Exception("Not supported type of operation!");
+                throw new ArgumentException("Not supported type of operation!");
             }
 
             return result;

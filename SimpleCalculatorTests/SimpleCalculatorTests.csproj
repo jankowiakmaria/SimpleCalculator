@@ -50,6 +50,7 @@
     <Compile Include="Operations\ClearOperationTests.cs" />
     <Compile Include="Operations\DivideOperationTests.cs" />
     <Compile Include="Operations\MultiplyOperationTests.cs" />
+    <Compile Include="Operations\SqrtOperationTest.cs" />
     <Compile Include="Operations\SubtractOpeartionTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

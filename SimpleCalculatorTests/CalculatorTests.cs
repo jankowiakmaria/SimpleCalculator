@@ -1,4 +1,6 @@
-﻿namespace SimpleCalculatorTests
+﻿using System;
+
+namespace SimpleCalculatorTests
 {
     using NUnit.Framework;
     using SimpleCalculator;
@@ -98,7 +100,7 @@
         {
             var calculator = new Calculator(-1.5);
 
-            Assert.Catch(() => calculator.Calculate("/", 0));
+            Assert.Catch(typeof(DivideByZeroException), () => calculator.Calculate("/", 0));
         }
 
         [Test]
@@ -124,5 +126,38 @@
 
             Assert.AreEqual(1.5, calculator.Calculate("+/-", 10));
         }
+
+        [Test]
+        public void SqrtWhenNegativeTest()
+        {
+            var calculator = new Calculator(-1);
+
+            Assert.Catch(typeof(ArgumentOutOfRangeException), () => calculator.Calculate("sqrt", 0));
+        }
+
+        [Test]
+        public void SqrtWhenZeroTest()
+        {
+            var calculator = new Calculator();
+
+            Assert.AreEqual(0, calculator.Calculate("sqrt", 0));
+        }
+
+        [Test]
+        public void SqrtWhenPositiveTest()
+        {
+            var calculator = new Calculator(4);
+
+            Assert.AreEqual(2, calculator.Calculate("sqrt", 0));
+        }
+
+        [Test]
+        public void InvalidOperationTest()
+        {
+            var calculator = new Calculator();
+
+            Assert.Catch(typeof (ArgumentException), () => calculator.Calculate("xyz", 15));
+        }
+
     }
 }

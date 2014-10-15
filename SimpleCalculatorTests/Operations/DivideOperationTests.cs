@@ -2,6 +2,7 @@
 {
     using NUnit.Framework;
     using SimpleCalculator.Operations;
+    using System;
 
     [TestFixture]
     class DivideOperationTests
@@ -16,7 +17,7 @@
             Assert.AreEqual(-1, divideOperation.Execute(-1, 1));
             Assert.AreEqual(-1, divideOperation.Execute(1, -1));
             Assert.AreEqual(1, divideOperation.Execute(1, 1));
-            Assert.Catch(() => divideOperation.Execute(1, 0));
+            Assert.Catch(typeof(DivideByZeroException), () => divideOperation.Execute(1, 0));
         }
     }
 }

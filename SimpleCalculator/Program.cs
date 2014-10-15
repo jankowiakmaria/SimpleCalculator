@@ -16,5 +16,5 @@
 //Multiply (*)              +
 //Divide (/)                +
 //Clear (0)                 +
-//Change sign (+/-)         
-//Sqrt                      
+//Change sign (+/-)         +
+//Sqrt                      +

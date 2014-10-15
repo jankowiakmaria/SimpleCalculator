@@ -12,7 +12,7 @@
             }
             else
             {
-                throw new Exception("You cannot divide by zero");
+                throw new DivideByZeroException("You cannot divide by zero");
             }
         }
     }
