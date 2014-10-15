@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SimpleCalculator.Operations;
-
-namespace SimpleCalculator
+﻿namespace SimpleCalculator
 {
+    using System;
+    using System.Collections.Generic;
+    using Operations;
+
     public class Calculator
     {
         private double result;
@@ -15,7 +12,8 @@ namespace SimpleCalculator
         {
             {"+", new AddOperation()},
             {"-", new SubtractOperation()},
-            {"C", new ClearOperation()}
+            {"C", new ClearOperation()},
+            {"*", new MultiplyOperation()}
         };
 
         public Calculator(double value = 0.0)

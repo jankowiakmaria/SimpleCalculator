@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SimpleCalculator
+﻿namespace SimpleCalculator
 {
     class Program
     {
@@ -19,8 +13,8 @@ namespace SimpleCalculator
 //Requirements (possible operations):
 //Add (+)                   +
 //Subtract (-)              +
-//Multiply (*)              
+//Multiply (*)              +
 //Divide (/)                
-//Clear (0)                 
+//Clear (0)                 +
 //Change sign (+/-)         
 //Sqrt                      

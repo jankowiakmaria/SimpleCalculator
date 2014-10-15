@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using SimpleCalculator;
-
-namespace SimpleCalculatorTests
+﻿namespace SimpleCalculatorTests
 {
+    using NUnit.Framework;
+    using SimpleCalculator;
+
     [TestFixture]
     class CalculatorTests
     {
@@ -33,6 +28,38 @@ namespace SimpleCalculatorTests
             var calculator = new Calculator(5.0);
 
             Assert.AreEqual(0, calculator.Calculate("C", 0));
+        }
+
+        [Test]
+        public void MultiplyWhenZeroTest()
+        {
+            var calculator = new Calculator();
+
+            Assert.AreEqual(0, calculator.Calculate("*", 10));
+        }
+
+        [Test]
+        public void MultiplyWhenPositiveTest()
+        {
+            var calculator = new Calculator(1.5);
+
+            Assert.AreEqual(15, calculator.Calculate("*", 10));
+        }
+
+        [Test]
+        public void MultiplyWhenNegativeTest()
+        {
+            var calculator = new Calculator(-1.5);
+
+            Assert.AreEqual(-15, calculator.Calculate("*", 10));
+        }
+
+        [Test]
+        public void MultiplyWhenBothNegativeTest()
+        {
+            var calculator = new Calculator(-1.5);
+
+            Assert.AreEqual(15, calculator.Calculate("*", -10));
         }
     }
 }
