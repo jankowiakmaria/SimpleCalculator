@@ -18,7 +18,7 @@ namespace SimpleCalculator
 
 //Requirements (possible operations):
 //Add (+)                   +
-//Subtract (-)              
+//Subtract (-)              +
 //Multiply (*)              
 //Divide (/)                
 //Clear (0)                 

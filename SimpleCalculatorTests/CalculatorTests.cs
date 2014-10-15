@@ -12,17 +12,27 @@ namespace SimpleCalculatorTests
     class CalculatorTests
     {
         [Test]
-        public void CalculateAdd()
+        public void AddTest()
         {
             var calculator = new Calculator();
+
             Assert.AreEqual(5, calculator.Calculate("+", 5));
         }
 
         [Test]
-        public void CalculateSubtract()
+        public void SubtractTest()
         {
             var calculator = new Calculator();
+
             Assert.AreEqual(-5, calculator.Calculate("-", 5));
+        }
+
+        [Test]
+        public void ClearTest()
+        {
+            var calculator = new Calculator(5.0);
+
+            Assert.AreEqual(0, calculator.Calculate("C", 0));
         }
     }
 }

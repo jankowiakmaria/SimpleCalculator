@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Calculator.cs" />
     <Compile Include="Operations\AddOperation.cs" />
+    <Compile Include="Operations\ClearOperation.cs" />
     <Compile Include="Operations\IOperation.cs" />
     <Compile Include="Operations\SubtractOperation.cs" />
     <Compile Include="Program.cs" />
