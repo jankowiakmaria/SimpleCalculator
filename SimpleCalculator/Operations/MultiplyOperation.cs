@@ -2,9 +2,11 @@
 {
     using System;
 
-    public class MultiplyOperation : IOperation
+    public class MultiplyOperation : Operation
     {
-        public double Execute(double argument1, double argument2)
+        public MultiplyOperation() : base(2) { }
+
+        public override double Execute(double argument1, double argument2)
         {
             return argument1*argument2;
         }

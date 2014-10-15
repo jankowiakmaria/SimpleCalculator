@@ -1,8 +1,10 @@
 ﻿namespace SimpleCalculator.Operations
 {
-    public class ChangeSignOperation : IOperation
+    public class ChangeSignOperation : Operation
     {
-        public double Execute(double argument1, double argument2)
+        public ChangeSignOperation() : base(1) { }
+
+        public override double Execute(double argument1, double argument2 = 0)
         {
             return -argument1;
         }

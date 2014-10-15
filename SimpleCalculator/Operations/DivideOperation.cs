@@ -2,9 +2,11 @@
 {
     using System;
 
-    public class DivideOperation : IOperation
+    public class DivideOperation : Operation
     {
-        public double Execute(double argument1, double argument2)
+        public DivideOperation() : base(2) { }
+
+        public override double Execute(double argument1, double argument2)
         {
             if(argument2 != 0.0)
             {

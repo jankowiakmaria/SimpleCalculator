@@ -1,4 +1,6 @@
-﻿namespace SimpleCalculator
+﻿using System.Linq;
+
+namespace SimpleCalculator
 {
     using System;
     using System.Collections.Generic;
@@ -8,7 +10,7 @@
     {
         private double result;
 
-        readonly Dictionary<string, IOperation> operations = new Dictionary<string, IOperation>()
+        readonly Dictionary<string, Operation> operations = new Dictionary<string, Operation>()
         {
             {"+", new AddOperation()},
             {"-", new SubtractOperation()},
@@ -19,6 +21,8 @@
             {"sqrt", new SqrtOperation()}
         };
 
+        public Queue<List<string>> SequenceOfOperationsWithArguments;
+
         public Calculator(double value = 0.0)
         {
             result = value;
@@ -26,7 +30,7 @@
 
         public double Calculate(string operation, double argument)  //maybe second parameter sholud be optional for operations which require only one argument (the same in interface)
         {
-            IOperation currentOperation;
+            Operation currentOperation;
 
             if(operations.TryGetValue(operation, out currentOperation))
             {
@@ -37,6 +41,56 @@
                 throw new ArgumentException("Not supported type of operation!");
             }
 
+            return result;
+        }
+
+        public void ParseParameters(string parameters)  //todo: check number of parameters
+        {
+            SequenceOfOperationsWithArguments = new Queue<List<string>>();
+            var parameterList = parameters.Split();
+
+            for (int i = 0; i < parameterList.Length;)
+            {
+                Operation currentOperation;
+                if (operations.TryGetValue(parameterList[i], out currentOperation))
+                {
+                    var list = new List<string>();
+                    list.Add(parameterList[i]);
+                    for (int j = i + 1; j < i + currentOperation.NumberOfParameters; j++)
+                    {
+                        if (parameterList.Length < i + currentOperation.NumberOfParameters - 1)
+                        {
+                            throw new ArgumentException("Invalid number of parameters for operation: {0}!", parameterList[i]);
+                        }
+                        double parameter;
+                        if (Double.TryParse(parameterList[j], out parameter))
+                        {
+                            list.Add(parameterList[j]);
+                        }
+                        else
+                        {
+                            throw new ArgumentException("Invalid type of parameter: {0}!", parameterList[j]);
+                        }
+                    }
+                    SequenceOfOperationsWithArguments.Enqueue(list);
+                    i += Math.Max(1, currentOperation.NumberOfParameters);
+                }
+                else
+                {
+                    throw new ArgumentException("Inapropriate type of operation: {0}!", parameterList[i]);
+                }
+            }
+        }
+
+        public double ExecuteSequenceOfOperations(string parameters)
+        {
+            ParseParameters(parameters);
+            foreach (var operationWithArguments in SequenceOfOperationsWithArguments)
+            {
+                var parameter = operationWithArguments.ElementAtOrDefault(1) ?? "0";
+                
+                result = Calculate(operationWithArguments[0], Double.Parse(parameter));
+            }
             return result;
         }
     }

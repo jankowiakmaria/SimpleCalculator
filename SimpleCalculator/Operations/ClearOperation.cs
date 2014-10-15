@@ -1,8 +1,10 @@
 ﻿namespace SimpleCalculator.Operations
 {
-    public class ClearOperation : IOperation
+    public class ClearOperation : Operation
     {
-        public double Execute(double argument1, double argument2)
+        public ClearOperation() : base(0) { }
+
+        public override double Execute(double argument1 = 0, double argument2 = 0)
         {
             return 0.0;
         }

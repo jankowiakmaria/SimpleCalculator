@@ -159,5 +159,42 @@ namespace SimpleCalculatorTests
             Assert.Catch(typeof (ArgumentException), () => calculator.Calculate("xyz", 15));
         }
 
+        [Test]
+        public void CheckOperationSequenceTest()
+        {
+            var calculator = new Calculator();
+            calculator.ParseParameters("C + 3 - 7 +/- sqrt * 5 / 2");
+
+            Assert.AreEqual("C", calculator.SequenceOfOperationsWithArguments.Dequeue()[0]);
+            Assert.AreEqual("+", calculator.SequenceOfOperationsWithArguments.Dequeue()[0]);
+            Assert.AreEqual("-", calculator.SequenceOfOperationsWithArguments.Dequeue()[0]);
+            Assert.AreEqual("+/-", calculator.SequenceOfOperationsWithArguments.Dequeue()[0]);
+            Assert.AreEqual("sqrt", calculator.SequenceOfOperationsWithArguments.Dequeue()[0]);
+            Assert.AreEqual("*", calculator.SequenceOfOperationsWithArguments.Dequeue()[0]);
+            Assert.AreEqual("/", calculator.SequenceOfOperationsWithArguments.Dequeue()[0]);
+        }
+
+        [Test]
+        public void CheckOperationParametersTest()
+        {
+            var calculator = new Calculator();
+            calculator.ParseParameters("C + 3 - 7 +/- sqrt * 5 / 2");
+
+            Assert.AreEqual(1, calculator.SequenceOfOperationsWithArguments.Dequeue().Count);
+            Assert.AreEqual("3", calculator.SequenceOfOperationsWithArguments.Dequeue()[1]);
+            Assert.AreEqual("7", calculator.SequenceOfOperationsWithArguments.Dequeue()[1]);
+            Assert.AreEqual(1, calculator.SequenceOfOperationsWithArguments.Dequeue().Count);
+            Assert.AreEqual(1, calculator.SequenceOfOperationsWithArguments.Dequeue().Count);
+            Assert.AreEqual("5", calculator.SequenceOfOperationsWithArguments.Dequeue()[1]);
+            Assert.AreEqual("2", calculator.SequenceOfOperationsWithArguments.Dequeue()[1]);
+        }
+
+        [Test]
+        public void CheckInappropriateParametersTest()
+        {
+            var calculator = new Calculator();
+            Assert.Catch(typeof (ArgumentException), () => calculator.ParseParameters("C 3 - 7 +/- sqrt * 5 / 2"));
+
+        }
     }
 }

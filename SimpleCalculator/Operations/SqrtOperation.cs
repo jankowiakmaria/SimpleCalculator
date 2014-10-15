@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace SimpleCalculator.Operations
 {
-    public class SqrtOperation : IOperation
+    public class SqrtOperation : Operation
     {
-        public double Execute(double argument1, double argument2)
+        public SqrtOperation() : base(1) { }
+
+        public override double Execute(double argument1, double argument2 = 0)
         {
             if (argument1 >= 0 && argument1 < double.PositiveInfinity)
             {
