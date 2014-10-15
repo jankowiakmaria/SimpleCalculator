@@ -13,7 +13,8 @@
             {"+", new AddOperation()},
             {"-", new SubtractOperation()},
             {"C", new ClearOperation()},
-            {"*", new MultiplyOperation()}
+            {"*", new MultiplyOperation()},
+            {"/", new DivideOperation()}
         };
 
         public Calculator(double value = 0.0)
@@ -23,13 +24,15 @@
 
         public double Calculate(string operation, double argument)  //maybe second parameter sholud be optional for operations which require only one argument (the same in interface)
         {
-            try
+            IOperation currentOperation;
+
+            if(operations.TryGetValue(operation, out currentOperation))
             {
-                result = operations[operation].Execute(result, argument);
+                result = currentOperation.Execute(result, argument);
             }
-            catch (Exception)
+            else
             {
-                throw new Exception("Not supported type of operation");
+                throw new Exception("Not supported type of operation!");
             }
 
             return result;

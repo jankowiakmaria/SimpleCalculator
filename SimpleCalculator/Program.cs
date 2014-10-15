@@ -14,7 +14,7 @@
 //Add (+)                   +
 //Subtract (-)              +
 //Multiply (*)              +
-//Divide (/)                
+//Divide (/)                +
 //Clear (0)                 +
 //Change sign (+/-)         
 //Sqrt                      

@@ -61,5 +61,44 @@
 
             Assert.AreEqual(15, calculator.Calculate("*", -10));
         }
+
+        [Test]
+        public void DivideWhenZeroTest()
+        {
+            var calculator = new Calculator();
+
+            Assert.AreEqual(0, calculator.Calculate("/", 10));
+        }
+
+        [Test]
+        public void DivideWhenPositiveTest()
+        {
+            var calculator = new Calculator(1.5);
+
+            Assert.AreEqual(0.15, calculator.Calculate("/", 10));
+        }
+
+        [Test]
+        public void DivideWhenNegativeTest()
+        {
+            var calculator = new Calculator(-1.5);
+
+            Assert.AreEqual(-0.15, calculator.Calculate("/", 10));
+        }
+
+        [Test]
+        public void DivideWhenBothNegativeTest()
+        {
+            var calculator = new Calculator(-1.5);
+
+            Assert.AreEqual(0.15, calculator.Calculate("/", -10));
+        }
+        [Test]
+        public void DivideByZeroTest()
+        {
+            var calculator = new Calculator(-1.5);
+
+            Assert.Catch(() => calculator.Calculate("/", 0));
+        }
     }
 }
