@@ -32,7 +32,7 @@ namespace SimpleCalculator
         {
             Operation currentOperation;
 
-            if(operations.TryGetValue(operation, out currentOperation))
+            if (operations.TryGetValue(operation, out currentOperation))
             {
                 result = currentOperation.Execute(result, argument);
             }
@@ -44,24 +44,25 @@ namespace SimpleCalculator
             return result;
         }
 
-        public void ParseParameters(string parameters)  //todo: check number of parameters
+        public void ParseParameters(string parameters)
         {
             SequenceOfOperationsWithArguments = new Queue<List<string>>();
             var parameterList = parameters.Split();
 
-            for (int i = 0; i < parameterList.Length;)
+            for (int i = 0; i < parameterList.Length; )
             {
                 Operation currentOperation;
                 if (operations.TryGetValue(parameterList[i], out currentOperation))
                 {
                     var list = new List<string>();
                     list.Add(parameterList[i]);
-                    for (int j = i + 1; j < i + currentOperation.NumberOfParameters; j++)
+
+                    if (parameterList.Length < i + currentOperation.NumberOfParameters)
                     {
-                        if (parameterList.Length < i + currentOperation.NumberOfParameters - 1)
-                        {
-                            throw new ArgumentException("Invalid number of parameters for operation: {0}!", parameterList[i]);
-                        }
+                        throw new ArgumentException("Invalid number of parameters for operation: {0}!", parameterList[i]);
+                    }
+                    for (int j = i + 1; j < i + currentOperation.NumberOfParameters && j < parameterList.Length; j++)
+                    {                        
                         double parameter;
                         if (Double.TryParse(parameterList[j], out parameter))
                         {
@@ -88,8 +89,15 @@ namespace SimpleCalculator
             foreach (var operationWithArguments in SequenceOfOperationsWithArguments)
             {
                 var parameter = operationWithArguments.ElementAtOrDefault(1) ?? "0";
-                
-                result = Calculate(operationWithArguments[0], Double.Parse(parameter));
+                double parameterValue;
+                if (double.TryParse(parameter, out parameterValue))
+                {
+                    result = Calculate(operationWithArguments[0], parameterValue);
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid type of parameter: {0}!", parameter);
+                }
             }
             return result;
         }

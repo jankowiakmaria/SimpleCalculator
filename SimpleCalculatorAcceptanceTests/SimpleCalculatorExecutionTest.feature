@@ -13,3 +13,8 @@ Scenario: Test input 2
 	Given I have entered 5 into the calculator
 	When I enter "C 3 - 7 +/- sqrt * 5 / 2" into the calculator
 	Then on the screen should appear error message
+
+Scenario: Test input 3
+	Given I have entered 5 into the calculator
+	When I enter "C + 5 /" into the calculator
+	Then on the screen should appear error message
